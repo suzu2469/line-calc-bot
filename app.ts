@@ -27,4 +27,4 @@ const handleEvent = (event: line.WebhookEvent) => {
   })
 }
 
-app.listen(3000)
+app.listen(parseInt(process.env.PORT) || 3000)
