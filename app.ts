@@ -9,6 +9,7 @@ const config: line.ClientConfig = {
 }
 
 const app = express()
+app.get('/webhook', (req, res, next) => res.status(200).send('OK'))
 app.post('/webhook', (req, res, next) => {
   return Promise
     .all(req.body.events.map(handleEvent))
