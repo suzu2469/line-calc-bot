@@ -27,11 +27,11 @@ const handleEvent = (event: line.WebhookEvent) => {
 
   const message = event.message.text
   const numberMatch = message.match(/[0-9]+/)
-  const sum = numberMatch.reduce((p, n) => p + n)
+  const sum = numberMatch.reduce((p, n) => (parseInt(p) + parseInt(n)).toString())
 
   return client.replyMessage(event.replyToken, {
     type: 'text',
-    text: sum.toString()
+    text: sum
   })
 }
 
