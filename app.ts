@@ -3,15 +3,15 @@ import * as express from 'express'
 import * as dotenv from 'dotenv'
 
 process.env.NODE_ENV === 'production' ? null : dotenv.config()
-const config: line.ClientConfig = {
+const config = {
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
   channelSecret: process.env.CHANNEL_SECRET
 }
 
 const app = express()
 app.get('/webhook', (req, res, next) => res.status(200).send('OK'))
-app.post('/webhook', (req, res, next) => {
-  return Promise
+app.post('/webhook', line.middleware(config), (req, res, next) => {
+  Promise
     .all(req.body.events.map(handleEvent))
     .then((result) => res.json(result));
 })
