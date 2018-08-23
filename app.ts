@@ -2,7 +2,7 @@ import * as line from '@line/bot-sdk'
 import * as express from 'express'
 import * as dotenv from 'dotenv'
 
-dotenv.config()
+process.env.NODE_ENV === 'production' ? null : dotenv.config()
 const config: line.ClientConfig = {
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
   channelSecret: process.env.CHANNEL_SECRET
